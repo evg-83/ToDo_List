@@ -1,3 +1,48 @@
+# Deploying ToDo_List
+
+Клонировать гит репозиторий на сервер в папку ToDoList:
+root@serverName:/var/www# git clone https://github.com/evg-83/ToDo_List.git ToDoList 
+
+Установить composer:
+root@serverName:/var/www/ToDoList# composer install
+
+Скопировать .env.example создав .env:
+root@serverName:/var/www/ToDoList# cp .env.example .env
+
+В .env прописать данные DataBase:
+root@serverName:/var/www/ToDoList# vi .env
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nameYourDB
+DB_USERNAME=userNameDB
+DB_PASSWORD=userPassDB
+
+Создаем миграцию:
+root@serverName:/var/www/ToDoList# php artisan migrate
+
+Прописываем в конфиг путь к файлу index.php и переписываем location:
+root@serverName:/etc/nginx/sites-available# vi default
+
+root /var/www/ToDoList/public
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+Перезагружаем сервер:
+root@serverName:/etc/nginx/sites-available# sudo systemctl reload nginx
+
+Установка и сборка npm:
+root@serverName:/var/www/ToDoList# npm install
+root@serverName:/var/www/ToDoList# npm run build
+
+root@serverName:/var/www/ToDoList# php artisan storage:link
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -64,4 +109,4 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# ToDo_List
+
