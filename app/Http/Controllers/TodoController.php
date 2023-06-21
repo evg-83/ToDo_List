@@ -98,10 +98,12 @@ class TodoController extends Controller
             $todo->tags()->attach($tagIds);
         }
 
-        $imageData = [
-            'todo_id' => $todo->id,
-            'image' => $fileName,
-        ];
+        if ($file) {
+            $imageData = [
+                'todo_id' => $todo->id,
+                'image' => $fileName,
+            ];
+        }
 
         if ($file) {
             Image::firstOrCreate($imageData);
