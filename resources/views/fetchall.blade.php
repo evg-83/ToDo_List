@@ -230,11 +230,11 @@
                       <td>{{ $todo->task }}</td>
                       <td>
                         @if ($todo->images?->image)
-                          @can('todo', $todo)
+                          {{-- @can('todo', $todo) --}}
                             <a href="{{ route('showImage', $todo->id) }}"
                               id="{{ $todo->id }}"
                               class="text-success mx-1 showIcon">
-                            @endcan
+                            {{-- @endcan --}}
                             <img
                               src="storage/images/{{ $todo->images?->id ? $todo->images->image : '' }}"
                               style="width: 150px; height: 150px; object-fit: cover;"

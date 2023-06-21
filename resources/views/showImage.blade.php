@@ -78,14 +78,16 @@
                   @endif
                 </div>
                 <div class="input-group">
-                  <a href="#" id="{{ $todo->id }}"
-                    class="text-success mx-1 editImageIcon" data-bs-toggle="modal"
-                    data-bs-target="#editImageModal"><i
-                      class="bi-pencil-square h3"></i> Edit Image</a>
+                  @can('todo', $todo)
+                    <a href="#" id="{{ $todo->id }}"
+                      class="text-success mx-1 editImageIcon" data-bs-toggle="modal"
+                      data-bs-target="#editImageModal"><i
+                        class="bi-pencil-square h3"></i> Edit Image</a>
 
-                  <a href="#" id="{{ $todo->id }}"
-                    class="text-danger mx-1 deleteImageIcon"><i
-                      class="bi-trash h3"></i></a>
+                    <a href="#" id="{{ $todo->id }}"
+                      class="text-danger mx-1 deleteImageIcon"><i
+                        class="bi-trash h3"></i></a>
+                  @endcan
                 </div>
               </div>
             </div>
